@@ -33,11 +33,11 @@ const Topcollections = () => {
     }
   return (
     <div className='mb-[80px] w-[100%]'>
+        <div className='text-white mb-[15px] flex flex-col items-center justify-center w-[100%]'>
+            <p className='font-sans text-[25px] text-[#15bffd]'>Top Collections</p>
+            <p className='text-center'>The largest and unique Super rare NFT explorer For crypto-collectibles</p>
+        </div>
         <div className='w-[100%] flex flex-col items-center justify-center'>
-            <div className='text-white mb-[15px] flex flex-col items-center justify-center w-[100%]'>
-                <p className='font-sans text-[25px] text-[#15bffd]'>Top Collections</p>
-                <p className='text-center'>The largest and unique Super rare NFT explorer For crypto-collectibles</p>
-            </div>
             {nfts && nfts.map((nft,index)=>(
                 <div className="box border border-white w-[300px] h-[auto]  pb-[10px] mb-[20px]" key={index}>
                     <div className=' w-[100%] h-[300px] inline-block border border-[#15bffd81] relative clip'>
@@ -52,8 +52,8 @@ const Topcollections = () => {
                     </div>
                 </div>
             ))}
-            {isConnected && nfts.length < 1 ? <p className='text-white font-sans text-[20px]'>You don&apos;t have any collection yet</p> : !isConnected ? <p className='text-white font-sans text-[20px]'>Please Connect a wallet to view NFTs</p> : null}
         </div>
+        {isConnected && nfts.length < 1 ? <p className='text-white font-sans text-[20px]'>You don&apos;t have any collection yet</p> : !isConnected ? <p className='text-white font-sans text-[20px]'>Please Connect a wallet to view NFTs</p> : null}
     </div>
   )
 }
