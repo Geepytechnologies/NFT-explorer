@@ -1,0 +1,13 @@
+{
+    "name": "Les Paul guitar",
+    "description": "les paul guitar with box casing",
+    "image": "https://ipfs.io/ipfs/QmX3RkFQCeFtQEKmU8iYDnLaDsLwidqNaiJyRoHmNmuNrs",
+    "attributes": [
+        {
+            "color": "yellow"
+        },
+        {
+            "fret": "24 Fret"
+        }
+    ]
+}

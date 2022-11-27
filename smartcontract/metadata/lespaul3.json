@@ -1,0 +1,13 @@
+{
+    "name": "Les Paul guitar",
+    "description": "les paul guitar with guitar effect and combo",
+    "image": "https://ipfs.io/ipfs/QmZhqPzmWqVAuoW8kn5yGrrwC1WkEZxQ4goKZuvKXHiZuK",
+    "attributes": [
+        {
+            "color": "yellow"
+        },
+        {
+            "fret": "24 Fret"
+        }
+    ]
+}

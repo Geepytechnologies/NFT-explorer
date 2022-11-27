@@ -1,0 +1,13 @@
+{
+    "name": "Les Paul guitar",
+    "description": "Red les paul guitar with a good tone quality",
+    "image": "https://ipfs.io/ipfs/Qmai3q9nAXresccwYTethhnyx8uQHQRi6PBXWrcrKrk8iS",
+    "attributes": [
+        {
+            "color": "red"
+        },
+        {
+            "fret": "24 Fret"
+        }
+    ]
+}
