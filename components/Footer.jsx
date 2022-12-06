@@ -32,8 +32,10 @@ const Footer = () => {
                         </ul>
                 </div>
             </div>
-        <div className='flex text-white py-[5px] justify-center items-center'>Copyright <AiOutlineCopyrightCircle className='mx-[4px]' /> NFT <span className='text-[#15bffd] mx-[4px]'>hub</span> 2022 All rights reserved</div>
-        <div className='flex text-white pb-[5px] justify-center items-center'>Made with <AiFillHeart className='mx-[4px] text-[#15bffd]' /> by Geepy</div>
+        <div className="mt-[50px]">
+            <div className='flex text-white py-[5px] justify-center items-center'>Copyright <AiOutlineCopyrightCircle className='mx-[4px]' /> NFT <span className='text-[#15bffd] mx-[4px]'>hub</span> 2022 All rights reserved</div>
+            <div className='flex text-white pb-[5px] justify-center items-center'>Made with <AiFillHeart className='mx-[4px] text-[#15bffd]' /> by Geepy</div>
+        </div>
     </div>
   )
 }

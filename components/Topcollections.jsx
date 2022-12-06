@@ -5,7 +5,7 @@ import { Network, Alchemy } from "alchemy-sdk"
 import axios from 'axios'
 
 const Topcollections = () => {
-    const { address, isConnecting, isConnected, isDisconnected } = useAccount()
+  const { address, isConnecting, isConnected, isDisconnected } = useAccount();
   const [alchemy, setAlchemy] = useState(null);
   const [nfts, setNfts] = useState([]);
   useEffect(()=>{
@@ -21,16 +21,15 @@ const Topcollections = () => {
           fetchNFTs(address);
         }
     },[isConnected,alchemy,address])
-    const fetchNFTs = async (address)=>{
+  const fetchNFTs = async (address)=>{
       const nftsForOwner = await alchemy.nft.getNftsForOwner(address);
       for (let i = 0; i < nftsForOwner?.ownedNfts.length; i++) {
         const nft = nftsForOwner?.ownedNfts[i];
         const metadata = await axios(nft?.tokenUri?.raw);
         nftsForOwner.ownedNfts[i].metadata = metadata.data;
-        setNfts(nftsForOwner.ownedNfts);
-        // console.log(Object.keys(nft.rawMetadata.attributes[0]))
       }
-    }
+      setNfts(nftsForOwner.ownedNfts);
+  }
   return (
     <div className='mb-[80px] w-[100%]'>
         <div className='text-white mb-[15px] flex flex-col items-center justify-center w-[100%]'>
@@ -38,22 +37,22 @@ const Topcollections = () => {
             <p className='text-center'>The largest and unique Super rare NFT explorer For crypto-collectibles</p>
         </div>
         <div className='w-[100%] grid grid-cols-1 content-center justify-items-center md:grid-cols-3 gap-4'>
-            {nfts && nfts.map((nft,index)=>(
+            {nfts?.map((nft, index)=>(
                 <div className="box border border-white w-[300px] h-[auto]  pb-[10px] mb-[20px]" key={index}>
-                    <div className=' w-[100%] h-[300px] inline-block border border-[#15bffd81] relative clip'>
-                        <Image src={nft.rawMetadata.image} decoding='async' alt='lespaul' fill={true} className="object-cover" />
-                    </div>
+                    {nft.metadata.image && <div className=' w-[100%] h-[300px] inline-block border border-[#15bffd81] relative clip'>
+                        <Image src={nft?.metadata.image} decoding='async' alt='lespaul' fill={true} className="object-cover" />
+                    </div>}
                     <div className='pl-[3px]'>
-                        <p className='text-white font-[600] text-[20px]'>{nft.rawMetadata.name}</p>
-                        <p className='text-white'>{nft.rawMetadata.description}</p>
-                        {nft.rawMetadata.attributes.map((item, index)=>(
-                            <button key={index} className=' bg-[#ef1e41] mr-[3px] text-white py-[5px] px-[10px]'>{Object.keys(item)} : {Object.values(item)}</button>
+                        <p className='text-white font-[600] text-[20px]'>{nft?.metadata.name}</p>
+                        <p className='text-white'>{nft?.metadata.description}</p>
+                        {nft.metadata.attributes && nft?.metadata.attributes.map((item, index)=>(
+                            <button key={index} className=' bg-[#ef1e41] mr-[3px] mt-[5px] text-white py-[5px] px-[10px]'>{Object.keys(item)} : {Object.values(item)}</button>
                         ))}
                     </div>
                 </div>
             ))}
         </div>
-        {isConnected && nfts.length < 1 ? <p className='text-white text-center font-sans text-[20px]'>You don&apos;t have any collection yet</p> : !isConnected ? <p className='text-white text-center font-sans text-[20px]'>Please Connect a wallet to view NFTs</p> : null}
+       {/*  {isConnected && nfts.length < 1 ? <p className='text-white text-center font-sans text-[20px]'>You don&apos;t have any collection yet</p> : !isConnected ? <p className='text-white text-center font-sans text-[20px]'>Please Connect a wallet to view NFTs</p> : null} */}
     </div>
   )
 }

@@ -11,7 +11,7 @@ import { publicProvider } from "wagmi/providers/public";
 import {SiBlockchaindotcom} from "react-icons/si"
 
 const { chains, provider } = configureChains(
-  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum,chain.goerli, ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [chain.goerli] : [])],
+  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum,chain.goerli, /* ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [chain.goerli] : []) */],
   [alchemyProvider({ alchemyId: process.env.ALCHEMY_ID })]
 );
 const { connectors } = getDefaultWallets({

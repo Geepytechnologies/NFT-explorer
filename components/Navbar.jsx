@@ -8,7 +8,7 @@ import {FaLock} from "react-icons/fa"
 
 
 export const Navbar = () => {
-    const { address, isConnecting, isConnected, isDisconnected } = useAccount()
+    const { address, isConnecting, isConnected, isDisconnected } = useAccount();
   return (
     <div className='flex items-center justify-center h-[90px] w-[100%]'>
         <div className='flex flex-row items-center px-[5px] justify-around w-[100%]'>
@@ -27,12 +27,13 @@ export const Navbar = () => {
                 </ul>
             </div>
             {/* connect */}
-            <div className='flex-[1_1_0%] flex justify-end'>
-            { isConnected ? <div className='bg-[#ef1e41] flex items-center justify-center rounded-md font-sans py-[9px] px-[13px] text-white'><FaLock className='mr-[3px]' />Connected</div> :
-              <ConnectButton label='Connect' />
-            }
+              <div className='flex-[1_1_0%] flex justify-end'>
+            {/* { isConnected ? 
+                <div className='bg-[#ef1e41] flex items-center justify-center rounded-md font-sans py-[9px] px-[13px] text-white'><FaLock className='mr-[3px]' />Connected</div> :
+                <ConnectButton label='Connect' />
+              } */}
             </div>
         </div>
-    </div>
+    // </div>
   )
 }
