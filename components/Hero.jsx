@@ -11,10 +11,12 @@ import { create } from 'ipfs-http-client'
 
 const Hero = () => {
   const [modal, setModal] = useState(false);
+  const [clicked, setClicked] = useState(false);
   const [imageURL, setImageURL] = useState(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [link, setLink] = useState('');
+  const [file, setFile] = useState();
   const [supply, setSupply] = useState();
   
   const nftAddress = "0xb295b4F0F22dB03C325EF3675b7BA536b2733d14";
@@ -26,14 +28,15 @@ const Hero = () => {
     signerOrProvider: signer
   });
 
-  const upload = async (e)=>{
+  const upload = async ()=>{
+    setClicked(true);
     const auth = "Basic " + Buffer.from("2IUueq7UHwKG7IA6cCs195KCLUU" + ":" + "1865d53c5e4b85edf3b756517592e9ea").toString("base64");
     const client = create({url: "https://ipfs.infura.io:5001",
     headers: {
         authorization: auth,
       },
   });
-    const {path} = await client.add(e.target.files[0]);
+    const {path} = await client.add(file);
     setImageURL(`https://ipfs.io/ipfs/${path}`)
   }
 
@@ -96,9 +99,11 @@ const Hero = () => {
             </div>
                     <p className='text-[40px] font-[600]'>Mint New NFT</p>
                     <p className="text-[rgb(112, 122, 131)] font-[500] text-[15px]"><span className='text-[red]'>*</span>Required fields</p>
-                    <div className='w-[100%] mt-[8px]'>
+                    <div className='w-[100%] mt-[8px] mb-[8px]'>
                         <label className="text-[rgb(53, 56, 64)] font-[600] text-[16px]">Image<span className='text-[red]'>*</span></label>
-                        <input onChange={upload} accept="image/png, image/jpeg" type='file' id="nft" className='w-[100%] outline-0 border border-[#888] rounded-lg p-[5px]'  />
+                        <input onChange={(e)=>setFile(e.target.files[0])} accept="image/png, image/jpeg" type='file' id="nft" className='w-[100%] outline-0 border border-[#888] rounded-lg p-[5px]'  />
+                        <p>Click on the upload button after choosing an Image</p>
+                        {!clicked ? <button onClick={()=>upload()} className='bg-[#ef1e41] py-[8px] px-[15px] text-white rounded-lg'>Upload</button> : <button disabled={true} className='bg-[#38a169] py-[8px] px-[15px] text-white rounded-lg'>Done</button> }
                     </div>
                     <div className='w-[100%]'>
                         <label className="text-[rgb(53, 56, 64)] font-[600] text-[16px]">Title<span className='text-[red]'>*</span></label>
