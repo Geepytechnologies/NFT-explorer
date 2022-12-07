@@ -8,6 +8,7 @@ const Topcollections = () => {
   const { address, isConnecting, isConnected, isDisconnected } = useAccount();
   const [alchemy, setAlchemy] = useState(null);
   const [nfts, setNfts] = useState([]);
+  const [connected, setConnected] = useState(false);
   useEffect(()=>{
     const settings = {
       apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID, 
@@ -18,6 +19,7 @@ const Topcollections = () => {
   },[])
   useEffect(()=>{
       if(isConnected && alchemy && address){
+          setConnected(true);
           fetchNFTs(address);
         }
     },[isConnected,alchemy,address])
@@ -52,7 +54,7 @@ const Topcollections = () => {
                 </div>
             ))}
         </div>
-       {/*  {isConnected && nfts.length < 1 ? <p className='text-white text-center font-sans text-[20px]'>You don&apos;t have any collection yet</p> : !isConnected ? <p className='text-white text-center font-sans text-[20px]'>Please Connect a wallet to view NFTs</p> : null} */}
+        {connected && nfts.length < 1 ? <p className='text-white text-center font-sans text-[20px]'>You don&apos;t have any collection yet</p> : !connected ? <p className='text-white text-center font-sans text-[20px]'>Please Connect a wallet to view NFTs</p> : null}
     </div>
   )
 }

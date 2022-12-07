@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import { SiBlockchaindotcom } from 'react-icons/si'
 import {
     ConnectButton,
@@ -9,6 +9,10 @@ import {FaLock} from "react-icons/fa"
 
 export const Navbar = () => {
     const { address, isConnecting, isConnected, isDisconnected } = useAccount();
+    const [connected, setConnected] = useState(false);
+    useEffect(()=>{
+      setConnected(true);
+    },[isConnected])
   return (
     <div className='flex items-center justify-center h-[90px] w-[100%]'>
         <div className='flex flex-row items-center px-[5px] justify-around w-[100%]'>
@@ -28,10 +32,10 @@ export const Navbar = () => {
             </div>
             {/* connect */}
               <div className='flex-[1_1_0%] flex justify-end'>
-            {/* { isConnected ? 
+            { connected ? 
                 <div className='bg-[#ef1e41] flex items-center justify-center rounded-md font-sans py-[9px] px-[13px] text-white'><FaLock className='mr-[3px]' />Connected</div> :
                 <ConnectButton label='Connect' />
-              } */}
+              }
             </div>
         </div>
      </div>
